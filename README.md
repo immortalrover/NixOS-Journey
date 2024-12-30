@@ -28,4 +28,4 @@ if needed.
 
 ## Some of the software I am currently using
 
-TO BE CONTINUED
+- [SwayFX](https://github.com/WillPower3309/swayfx)

@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, ... }:
 
 {
@@ -14,109 +10,72 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # TODO: Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
-  # TODO: Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # TODO: Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   
-  # TODO: Configure keymap in X11
+  # Configure keymap in X11
   services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  # TODO: Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rover = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
 
-  # programs.firefox.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # TODO: Add your favorite software
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     git
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
+  # desktop environment / 桌面环境
+  # greetd 是一个最小的、不可知的和灵活的登录管理器守护进程, 它不会假设用户想要
+  # 启动什么, 应该是基于控制台的还是图形的. 任何可以从控制台启动的脚本或程序都
+  # 可以通过greetd启动, 这使得它特别适合Wayland合成器. 与任何其他显示管理器一样,
+  # 它还可以启动欢迎程序来启动用户会话
+  # 方案1: 你可以直接启动Sway(FX)
+  # services.greetd = {
   #   enable = true;
-  #   enableSSHSupport = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.swayfx}/bin/sway";
+  #       user = "rover";
+  #     };
+  #   };
   # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+  # 方案2: 你可以通过tuigreet(一个基于控制台的登录程序)启动Sway(FX)
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        # 这里写sway是正确的, 因为SwayFX实际包含的可执行文件名称没有变化
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        user = "rover";
+      };
+    };
+  };
+  # Sway 是一个基于 Wayland 的平铺窗口管理器, 兼容 i3 配置文件, 但具备更现代化
+  # 的显示协议支持. 它以简单、高效和可定制化为特点, 适合追求极简和快速操作的用户，
+  # 同时提供了稳定的性能和广泛的扩展性
+  programs.sway = {
+    enable = true;
+    # 这里使用了SwayFX, 它支持了一些毛玻璃特效
+    package = pkgs.swayfx;
+    wrapperFeatures.gtk = true;
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-  # to actually do that.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.11"; # Did you read the comment?
-
+  system.stateVersion = "24.11";
 }
-

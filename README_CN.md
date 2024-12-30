@@ -20,4 +20,4 @@ commit,查看某一次commit是否符合你的心意,然后你可以尝试模仿
 
 ## 一些我目前正在使用的软件
 
-TO BE CONTINUED
+- [SwayFX](https://github.com/WillPower3309/swayfx)
