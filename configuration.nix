@@ -38,6 +38,12 @@
     vim
     wget
     git
+
+    # 浏览器
+    firefox
+    # qutebrowser 应该算是一个非常好用的纯基于键盘操作的一款浏览器
+    # 推荐尝试一下, 但是遇上某些特殊情况还是用firefox会好一些:)
+    qutebrowser
   ];
 
   # desktop environment / 桌面环境
@@ -75,6 +81,11 @@
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
   };
+
+  # 代理软件
+  # v2rayA 是一个V2Ray的web客户端, 默认运行在2017端口, 可以通过浏览器访问
+  # localhost:2017来进入其界面, 设置非常简单且高效, 大大简化了用户操作
+  services.v2raya.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "24.11";
