@@ -21,6 +21,16 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # 中文输入法
+  # 首次安装需要手动在fcitx5-configtool里面把Pinyin添加上才能使用中文
+  # 我一般是按Ctrl + Space进行输入法的转换
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-chinese-addons
+    ];
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   
@@ -86,6 +96,21 @@
   # v2rayA 是一个V2Ray的web客户端, 默认运行在2017端口, 可以通过浏览器访问
   # localhost:2017来进入其界面, 设置非常简单且高效, 大大简化了用户操作
   services.v2raya.enable = true;
+
+  # Font / 字体
+  # 这里是一些我比较喜欢的字体
+  fonts.packages = with pkgs; [
+    font-awesome
+
+    # 霞鹜文楷 + maple font 是我正在用的控制台字体
+    lxgw-wenkai
+    maple-mono
+
+    # 解决字符"缺字"问题
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "24.11";
