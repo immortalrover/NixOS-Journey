@@ -25,7 +25,8 @@
   # 首次安装需要手动在fcitx5-configtool里面把Pinyin添加上才能使用中文
   # 我一般是按Ctrl + Space进行输入法的转换
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-chinese-addons
     ];
