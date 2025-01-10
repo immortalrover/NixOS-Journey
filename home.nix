@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./sway
+  ];
+
   # 设置你自己的用户名和用户目录
   home.username = "rover";
   home.homeDirectory = "/home/rover";
@@ -9,6 +13,9 @@
   home.packages = with pkgs; [
     neofetch
   ];
+
+  # 启用xdg规范文件管理
+  xdg.enable = true;
 
   # 使用home-manager的版本
   home.stateVersion = "24.11";
