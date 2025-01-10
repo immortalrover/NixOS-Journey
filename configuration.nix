@@ -59,6 +59,9 @@
     # qutebrowser 应该算是一个非常好用的纯基于键盘操作的一款浏览器
     # 推荐尝试一下, 但是遇上某些特殊情况还是用firefox会好一些:)
     qutebrowser
+
+    # 终端仿真器
+    kitty
   ];
 
   # desktop environment / 桌面环境
