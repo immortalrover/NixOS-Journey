@@ -53,6 +53,7 @@
     vim
     wget
     git
+    git-credential-manager
 
     # 浏览器
     firefox

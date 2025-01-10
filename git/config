@@ -1,0 +1,7 @@
+[credential]
+	credentialStore = "cache"
+	helper = "manager"
+
+[user]
+	email = "immortalrover@protonmail.com"
+	name = "immortalrover"

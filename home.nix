@@ -4,6 +4,7 @@
   imports = [
     ./sway
     ./kitty
+    ./git
   ];
 
   # 设置你自己的用户名和用户目录
