@@ -9,6 +9,10 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 6;
+
+  # 内核参数
+  boot.kernelParams = [ "quiet" "nowatchdog" ];
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -63,26 +67,26 @@
   # 可以通过greetd启动, 这使得它特别适合Wayland合成器. 与任何其他显示管理器一样,
   # 它还可以启动欢迎程序来启动用户会话
   # 方案1: 你可以直接启动Sway(FX)
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.swayfx}/bin/sway";
-  #       user = "rover";
-  #     };
-  #   };
-  # };
-  # 方案2: 你可以通过tuigreet(一个基于控制台的登录程序)启动Sway(FX)
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        # 这里写sway是正确的, 因为SwayFX实际包含的可执行文件名称没有变化
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        command = "${pkgs.swayfx}/bin/sway";
         user = "rover";
       };
     };
   };
+  # 方案2: 你可以通过tuigreet(一个基于控制台的登录程序)启动Sway(FX)
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       # 这里写sway是正确的, 因为SwayFX实际包含的可执行文件名称没有变化
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+  #       user = "rover";
+  #     };
+  #   };
+  # };
   # Sway 是一个基于 Wayland 的平铺窗口管理器, 兼容 i3 配置文件, 但具备更现代化
   # 的显示协议支持. 它以简单、高效和可定制化为特点, 适合追求极简和快速操作的用户，
   # 同时提供了稳定的性能和广泛的扩展性
@@ -113,6 +117,15 @@
     noto-fonts-emoji
   ];
 
+  # nix garbage settings / nix 垃圾回收设置
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "-d";
+  };
+
+  # 节约硬盘空间
+  nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "24.11";
 }
