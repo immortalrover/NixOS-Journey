@@ -22,13 +22,13 @@ set $menu dmenu_path | wmenu | xargs swaymsg exec --
 
 ### Appearance
 # window corner radius in px
-corner_radius 10
+# corner_radius 10
 
 # Window background blur
-blur off
-blur_xray off
-blur_passes 2
-blur_radius 5
+# blur off
+# blur_xray off
+# blur_passes 2
+# blur_radius 5
 
 shadows off
 shadows_on_csd off
@@ -46,7 +46,7 @@ scratchpad_minimize disable
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
-output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -238,5 +238,14 @@ bar {
 }
 
 exec_always fcitx5 -d
+blur on
+blur_xray off
+blur_passes 2
+blur_radius 2
+gaps inner 15
+corner_radius 2
+default_border pixel 1
+output * scale 1.25
+exec waypaper --restore
 
 include /etc/sway/config.d/*

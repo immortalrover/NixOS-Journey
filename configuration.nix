@@ -63,6 +63,10 @@
 
     # 终端仿真器
     kitty
+
+    # 壁纸
+    swaybg
+    waypaper
   ];
 
   # desktop environment / 桌面环境
@@ -127,6 +131,11 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+  };
+
+  # shell
+  programs.fish = {
+    enable = true;
   };
 
   # nix garbage settings / nix 垃圾回收设置
