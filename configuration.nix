@@ -50,7 +50,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim
+    # vim
     wget
     git
     git-credential-manager
@@ -120,6 +120,14 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
   ];
+
+  # 编辑器
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
 
   # nix garbage settings / nix 垃圾回收设置
   nix.gc = {
