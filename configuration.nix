@@ -67,6 +67,9 @@
     # 壁纸
     swaybg
     waypaper
+
+    # 系统剪切板
+    wl-clipboard
   ];
 
   # desktop environment / 桌面环境
