@@ -54,6 +54,7 @@
     wget
     git
     git-credential-manager
+    lazygit
 
     # 浏览器
     firefox

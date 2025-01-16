@@ -3,3 +3,6 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 -- vim-commentary
 vim.keymap.set({"n", "v"}, "<leader>/", ":Commentary<CR>")
+
+-- lazygit
+vim.keymap.set("n", "<leader>lg", ":LazyGit<CR>")

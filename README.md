@@ -29,3 +29,6 @@ if needed.
 ## Some of the software I am currently using
 
 - [SwayFX](https://github.com/WillPower3309/swayfx)
+- [kitty](https://github.com/kovidgoyal/kitty)
+- [fish](https://fishshell.com/)
+- [Neovim](https://github.com/neovim/neovim)
