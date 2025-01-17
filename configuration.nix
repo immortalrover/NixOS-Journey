@@ -71,6 +71,9 @@
 
     # 系统剪切板
     wl-clipboard
+
+    # 文件管理器
+    lf
   ];
 
   # desktop environment / 桌面环境
