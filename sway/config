@@ -247,5 +247,11 @@ corner_radius 2
 default_border pixel 1
 output * scale 1.25
 exec waypaper --restore
+input * {
+    xkb_layout "us"
+    # 参考https://man.archlinux.org/man/xkeyboard-config.7
+    # 将Caps Lock重新映射成Esc键，然后Shift + Caps Lock是正常的Caps Lock
+    xkb_options "caps:escape_shifted_capslock"
+}
 
 include /etc/sway/config.d/*
