@@ -20,6 +20,7 @@ o.listchars = {
   space = '·',
   trail = '-',
 }
+o.textwidth = 80
 k.set({"n", "v"}, "<leader>y", [["+y]])
 
 a.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {

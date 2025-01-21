@@ -74,6 +74,10 @@
 
     # 文件管理器
     lf
+
+    # Language Server
+    lua-language-server
+    prettierd
   ];
 
   # desktop environment / 桌面环境
