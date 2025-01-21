@@ -78,6 +78,9 @@
     # Language Server
     lua-language-server
     prettierd
+
+    # 搜索工具
+    ripgrep
   ];
 
   # desktop environment / 桌面环境
