@@ -8,13 +8,32 @@ return {
           vim.api.nvim_buf_set_keymap(buf,
             "n",
             "<leader>gf",
-            "<cmd>lua vim.lsp.buf.format()<cr>",
-            { noremap = true, desc = "格式化代码" }
+            "<cmd>lua vim.lsp.buf.format()<cr><cmd>write<cr>",
+            { noremap = true, silent = true, desc = "格式化代码", }
           )
         end,
       })
       local lspconfig = require("lspconfig")
-      lspconfig["lua_ls"].setup({})
+      lspconfig["lua_ls"].setup({
+        settings = {
+          Lua = {
+            format = {
+              enable = true,
+              defaultConfig = {
+                indent_size = "2",
+                tab_width = "2",
+                quote_style = "double",
+                continuation_indent = "2",
+                max_line_length = "80",
+                table_separator_style = "comma",
+                trailing_table_separator = "always",
+                detect_end_of_line = "true",
+                space_before_function_call_single_arg = "none",
+              },
+            },
+          },
+        },
+      })
     end,
   },
   {
@@ -32,22 +51,22 @@ return {
       },
       outline = {
         close_after_jump = true,
-        layout = 'float',
+        layout = "float",
         left_width = 0.5,
       },
     },
     keys = {
-      { "<leader>gc", "<cmd>Lspsaga code_action<cr>",     desc = "code_action" },
-      { "<leader>gk", "<cmd>Lspsaga peek_definition<cr>", desc = "peek_definition" },
-      { "<leader>gr", "<cmd>Lspsaga rename<cr>",          desc = "rename" },
-      { "<leader>gl", "<cmd>Lspsaga outline<cr>",         desc = "outline" },
-      { "K",          "<cmd>Lspsaga hover_doc<cr>",       desc = "hover_doc" },
+      { "<leader>gc", "<cmd>Lspsaga code_action<cr>",     desc = "code_action", },
+      { "<leader>gk", "<cmd>Lspsaga peek_definition<cr>", desc = "peek_definition", },
+      { "<leader>gr", "<cmd>Lspsaga rename<cr>",          desc = "rename", },
+      { "<leader>gl", "<cmd>Lspsaga outline<cr>",         desc = "outline", },
+      { "K",          "<cmd>Lspsaga hover_doc<cr>",       desc = "hover_doc", },
     },
   },
   {
     "hrsh7th/nvim-cmp",
     lazy = true,
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter", "CmdlineEnter", },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -69,8 +88,8 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-          ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+          ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c", }),
+          ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c", }),
           ["<CR>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               if luasnip.expandable() then
@@ -92,7 +111,7 @@ return {
             else
               fallback()
             end
-          end, { "i", "s" }),
+          end, { "i", "s", }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -101,14 +120,14 @@ return {
             else
               fallback()
             end
-          end, { "i", "s" }),
+          end, { "i", "s", }),
           ["<C-e>"] = cmp.mapping.abort(),
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "vsnip" },
-          { name = "buffer" },
-          { name = "path" },
+          { name = "nvim_lsp", },
+          { name = "vsnip", },
+          { name = "buffer", },
+          { name = "path", },
         }),
         -- 使用lspkind-nvim显示类型图标
         formatting = {
@@ -119,8 +138,8 @@ return {
               -- Source 显示提示来源
               vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
               return vim_item
-            end
-          })
+            end,
+          }),
         },
       })
       -- load vscode snippet (friendly-snippet)
