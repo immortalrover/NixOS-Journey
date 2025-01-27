@@ -74,6 +74,7 @@
 
     # 文件管理器
     lf
+    file # 依赖
 
     # Language Server
     lua-language-server
