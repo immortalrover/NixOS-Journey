@@ -30,5 +30,5 @@ if needed.
 
 - [SwayFX](https://github.com/WillPower3309/swayfx)
 - [kitty](https://github.com/kovidgoyal/kitty)
-- [fish](https://fishshell.com/)
+- [Zsh](https://www.zsh.org/)
 - [Neovim](https://github.com/neovim/neovim)

@@ -22,5 +22,5 @@ commit,查看某一次commit是否符合你的心意,然后你可以尝试模仿
 
 - [SwayFX](https://github.com/WillPower3309/swayfx)
 - [kitty](https://github.com/kovidgoyal/kitty)
-- [fish](https://fishshell.com/)
+- [Zsh](https://www.zsh.org/)
 - [Neovim](https://github.com/neovim/neovim)

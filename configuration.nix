@@ -44,6 +44,7 @@
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   users.users.rover = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
@@ -149,8 +150,20 @@
   };
 
   # shell
-  programs.fish = {
+  programs.zsh = {
     enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      ll = "ls -l";
+      # 需要修改成你的nixos配置路径
+      update = "sudo nixos-rebuild switch --flake ~/github/NixOS-Journey#nixos"
+    };
+
+    histFile = "$HOME/.zsh_history";
+    histSize = 10000;
   };
 
   # nix garbage settings / nix 垃圾回收设置
