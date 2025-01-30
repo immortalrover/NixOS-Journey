@@ -153,13 +153,15 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    ohMyZsh.enable = true;
+    ohMyZsh.theme = "kardan";
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
     shellAliases = {
       ll = "ls -l";
       # 需要修改成你的nixos配置路径
-      update = "sudo nixos-rebuild switch --flake ~/github/NixOS-Journey#nixos"
+      update = "sudo nixos-rebuild switch --flake ~/github/NixOS-Journey#nixos";
     };
 
     histFile = "$HOME/.zsh_history";
