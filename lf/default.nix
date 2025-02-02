@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 let
-  lfPath = "${config.home.homeDirectory}/github/NixOS-Journey/lf/lfrc";
+  lfPath = "${config.home.homeDirectory}/github/NixOS-Journey/lf/config";
 in
 {
-  xdg.configFile."lf/lfrc".source = config.lib.file.mkOutOfStoreSymlink lfPath;
+  xdg.configFile."lf" = {
+    source = config.lib.file.mkOutOfStoreSymlink lfPath;
+    recursive = true;
+  };
 }

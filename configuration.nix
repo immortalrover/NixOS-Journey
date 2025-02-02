@@ -170,8 +170,8 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ls = "eza";
-      ll = "eza -l";
+      ls = "eza --icons";
+      ll = "eza --icons -l";
       # 需要修改成你的nixos配置路径
       update = "sudo nixos-rebuild switch --flake ~/github/NixOS-Journey#nixos";
     };
