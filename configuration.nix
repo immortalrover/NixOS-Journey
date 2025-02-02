@@ -83,6 +83,12 @@
 
     # 搜索工具
     ripgrep
+
+    # 模糊查找
+    fzf
+
+    # ls替代
+    eza
   ];
 
   # desktop environment / 桌面环境
@@ -164,10 +170,15 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ll = "ls -l";
+      ls = "eza";
+      ll = "eza -l";
       # 需要修改成你的nixos配置路径
       update = "sudo nixos-rebuild switch --flake ~/github/NixOS-Journey#nixos";
     };
+
+    interactiveShellInit = ''
+      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+    '';
 
     histFile = "$HOME/.zsh_history";
     histSize = 10000;
