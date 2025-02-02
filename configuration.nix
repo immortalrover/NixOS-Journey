@@ -153,8 +153,13 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    ohMyZsh.enable = true;
-    ohMyZsh.theme = "kardan";
+    ohMyZsh = {
+      enable = true;
+      theme = "kardan";
+      plugins = [
+        "vi-mode"
+      ];
+    };
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
