@@ -94,6 +94,9 @@
     zoxide
 
     pistol
+    bat
+    w3m
+
     ffmpeg
   ];
 
