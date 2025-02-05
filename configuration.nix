@@ -89,6 +89,12 @@
 
     # ls替代
     eza
+
+    # cd替代
+    zoxide
+
+    pistol
+    ffmpeg
   ];
 
   # desktop environment / 桌面环境
@@ -174,7 +180,13 @@
       ll = "eza --icons -l";
       # 需要修改成你的nixos配置路径
       update = "sudo nixos-rebuild switch --flake ~/github/NixOS-Journey#nixos";
+      # 提供log
+      lf = "lf -log ~/.cache/lf.log";
     };
+
+    shellInit = ''
+      config=$HOME/github/NixOS-Journey
+    '';
 
     interactiveShellInit = ''
       source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
