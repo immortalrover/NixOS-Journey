@@ -98,7 +98,13 @@
     w3m
 
     ffmpeg
+
+    polybar
+
+    wechat-uos
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   # desktop environment / 桌面环境
   # greetd 是一个最小的、不可知的和灵活的登录管理器守护进程, 它不会假设用户想要
